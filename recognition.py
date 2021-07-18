@@ -8,18 +8,20 @@ from os import listdir
 
 from tensorflow.python.keras.backend import cos
 
+import json
+
 
 height, length = 128,128
 
-fruit_type = 2
+fruit_type = "apples"
 
-if(fruit_type == 0):
+if(fruit_type == "apples"):
     model='models/model_apples/model_apples.h5'
     weight='models/model_apples/weights_apples.h5'
-elif(fruit_type == 1):
+elif(fruit_type == "oranges"):
     model='models/model_oranges/model_oranges.h5'
     weight='models/model_oranges/weights_oranges.h5'
-elif(fruit_type == 2):
+elif(fruit_type == "bananas"):
     model='models/model_bananas/model_bananas.h5'
     weight='models/model_bananas/weights_bananas.h5'
 
@@ -53,16 +55,17 @@ def recognition(file):
     x=np.expand_dims(x, axis=0)
     arreglo=convolutional_neural_netwoks.predict(x)
     resultado = arreglo[0]
-    print(resultado)
+    #print(resultado)
     respuesta = np.argmax(resultado)
-    print(respuesta)
+    #print(respuesta)
     if(respuesta == 0):
         global correct_counter
         correct_counter = correct_counter + 1
     if(respuesta == 1):
         global incorrect_counter
-        print("Otros")
+        #print("Otros")
         incorrect_counter = incorrect_counter + 1
+    return respuesta
 
 
 def get_final_list():
@@ -79,19 +82,24 @@ def get_final_list():
     #print(image)  """
 
 
-
-if(fruit_type == 0):
-    recognition("test_images/fresh_apple.jpg")
-    recognition("test_images/rotten_apple.jpg")
+""" if(fruit_type == 0):
+    output = recognition("test_images/fresh_apple.jpg")
+    output2 = recognition("test_images/rotten_apple.jpg")
 elif(fruit_type == 1):
     recognition("test_images/fresh_orange.jpg")
     recognition("test_images/rotten_orange.jpg")
 elif(fruit_type == 2):
     recognition("test_images/fresh_banana.jpg")
-    recognition("test_images/rotten_banana.jpg")
+    recognition("test_images/rotten_banana.jpg") """
+
+#get_final_list()
 
 
-get_final_list()
+state = recognition("test_images/fresh_apple.jpg") #IMAGEN INGRESADA POR EL APLICATIVO
+output = {"state" : str(state), "fruit" : fruit_type}
+with open('data.json','w', encoding='utf-8') as f:
+    f.write(json.dumps(output))
+
 
 
 
