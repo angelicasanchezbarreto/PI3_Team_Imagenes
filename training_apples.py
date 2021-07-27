@@ -16,9 +16,9 @@ K.clear_session()
 
 
 #Entrenamiento
-training_data = os.path.join("images", "images_apples", "train")
+training_data = 'images/images_apples/train'
 #Validacion
-validation_data = os.path.join("images", "images_apples", "test")
+validation_data = 'images/images_apples/test'
 
 
 #Parametros Globales
@@ -147,6 +147,6 @@ convolutional_neural_netwoks.fit(img_training, steps_per_epoch=steps, epochs=epo
 convolutional_neural_netwoks.summary()
 
 
-convolutional_neural_netwoks.save.os.path.join("models", "model_apples", "model_apples.h5")
-convolutional_neural_netwoks.save_weights.os.path.join("models", "model_apples", "weights_apples.h5")
+convolutional_neural_netwoks.save('models/model_apples/model_apples.h5')
+convolutional_neural_netwoks.save_weights('models/model_apples/weights_apples.h5')
 

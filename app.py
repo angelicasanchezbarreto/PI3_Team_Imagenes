@@ -101,9 +101,9 @@ def uploaderOranges():
             output = {"state" : str(state), "fruit" : fruit_type}
             with open('data.json','w', encoding='utf-8') as f:
                 f.write(json.dumps(output))
-            if int(state) == 0:
+            if int(state) == 1:
                 return "The " + fruit_type + " are fresh"
-            elif int(state) == 1:
+            elif int(state) == 0:
                 return "The " + fruit_type + " are rotten"
             else:
                 return "Imagen no aceptada"

@@ -18,12 +18,12 @@ fruit_type = "apples"
 if(fruit_type == "apples"):
     model='models/model_apples/model_apples.h5'
     weight='models/model_apples/weights_apples.h5'
-elif(fruit_type == "oranges"):
-    model='models/model_oranges/model_oranges.h5'
-    weight='models/model_oranges/weights_oranges.h5'
 elif(fruit_type == "bananas"):
     model='models/model_bananas/model_bananas.h5'
     weight='models/model_bananas/weights_bananas.h5'
+elif(fruit_type == "oranges"):
+    model='models/model_oranges/model_oranges.h5'
+    weight='models/model_oranges/weights_oranges.h5'
 
 convolutional_neural_netwoks = load_model(model)
 
@@ -95,7 +95,7 @@ elif(fruit_type == 2):
 #get_final_list()
 
 
-state = recognition("test_images/fresh_apple.jpg") #IMAGEN INGRESADA POR EL APLICATIVO
+state = recognition("test_images/apples.jpg") #IMAGEN INGRESADA POR EL APLICATIVO
 output = {"state" : str(state), "fruit" : fruit_type}
 with open('data.json','w', encoding='utf-8') as f:
     f.write(json.dumps(output))
