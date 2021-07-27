@@ -13,17 +13,10 @@ import json
 
 height, length = 128,128
 
-fruit_type = "apples"
+fruit_type = "oranges"
 
-if(fruit_type == "apples"):
-    model='models/model_apples/model_apples.h5'
-    weight='models/model_apples/weights_apples.h5'
-elif(fruit_type == "bananas"):
-    model='models/model_bananas/model_bananas.h5'
-    weight='models/model_bananas/weights_bananas.h5'
-elif(fruit_type == "oranges"):
-    model='models/model_oranges/model_oranges.h5'
-    weight='models/model_oranges/weights_oranges.h5'
+model='models/model_oranges/model_oranges.h5'
+weight='models/model_oranges/weights_oranges.h5'
 
 convolutional_neural_netwoks = load_model(model)
 
@@ -49,7 +42,7 @@ corroborate_counter = 0
 final_list=[]
 
 
-def recognition(file):
+def recognition_oranges(file):
     x = load_img(file, target_size=(height, length))
     x = img_to_array(x)
     x=np.expand_dims(x, axis=0)
@@ -95,7 +88,7 @@ elif(fruit_type == 2):
 #get_final_list()
 
 
-state = recognition("test_images/apples.jpg") #IMAGEN INGRESADA POR EL APLICATIVO
+state = recognition_oranges("test_images/oranges_fresh.jpg") #IMAGEN INGRESADA POR EL APLICATIVO
 output = {"state" : str(state), "fruit" : fruit_type}
 with open('data.json','w', encoding='utf-8') as f:
     f.write(json.dumps(output))
